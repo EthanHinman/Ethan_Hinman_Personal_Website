@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+
+<html>  
+<head>
+    <title>Ethan Hinman's Webpage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--I have to give credit where credit is due. I saw this on https://codepen.io/carpenumidium/pen/hHjEJ and it look cool-->
+
+</head>
+<link rel="stylesheet" type="text/css" href="mycss.css">
+<body>
+    <!-- this the header.-->
+    <h1 header="Hello, my name's Ethan">Hello, my name's Ethan</h1>
+    <!-- end of header.-->
+
+
+
+    <!--I used https://www.w3schools.com/howto/howto_css_icon_bar.asp for help with menu icons.-->
+    <!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="horizontal_topnav.css">
+<div class="topnav" id="myTopnav">
+    <a href="EthanHinmanResumeDownload.pdf" download>Resume</a>
+  <a href="https://github.com/EthanHinman">Github</a>
+  <a href="https://www.linkedin.com/in/ethan-hinman-4708601b6/">LinkedIn</a>
+  <a href="#contact">About Me</a>
+  <a href="#about">Contact</a>
+  <a href="Snake/SnakePage.html">Play a game?</a>
+  <script>
+      /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+  </script>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+</body>
+
+</html>

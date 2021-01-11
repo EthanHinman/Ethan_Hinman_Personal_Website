@@ -1,0 +1,16 @@
+
+.Board{
+    margin:1cm;
+    width:600px;
+    height:600px;
+    border: 4px solid white;
+    
+    flex-wrap:wrap;
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 25%;
+    margin-left: 33%;
+    margin-right: 25%;
+}
+
