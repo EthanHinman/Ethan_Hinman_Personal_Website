@@ -11,7 +11,8 @@
     body {
         text-align: center;
         background-color:#242582;
-        
+        position: center;
+        margin: auto;
         }
     body:before {
         content: '';
@@ -25,7 +26,8 @@
         display: inline-block;
         
         color: #f64c72;
-        
+        position: center;
+        margin: auto;
         font-family: 'Righteous', serif;
         font-size: 8em; 
         text-shadow: .02em .02em 0 rgb(255, 255, 255);
@@ -37,6 +39,8 @@
         position: absolute;
         top: 10px; left: 10px; right:15px;
         z-index: -1;
+        position: center;
+        margin: auto;
         text-shadow: none;
         
         background-image:
