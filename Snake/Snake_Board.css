@@ -1,5 +1,4 @@
-
-.Board{
+#Board{
     margin:1cm;
     width:455px;
     height:455px;
@@ -17,7 +16,8 @@
     /* checkered effect */
     linear-gradient(to right, rgb(145, 20, 194) 50%, white 50%),
     linear-gradient(to bottom, rgb(145, 20, 194) 50%, white 50%);
-background-blend-mode: normal, difference, normal;
-background-size: 4em 4em;
+    background-blend-mode: normal, difference, normal;
+    background-size: 4em 4em;
+  
 }
 

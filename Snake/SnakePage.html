@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ethan Hinman's Snake Game</title>
+    <title>Ethan Hinman's Snake Game</title>
+   
 </head>
 <link rel="stylesheet" type="text/css" href="Snake.css">
 <link rel="stylesheet" type="text/css" href="Snake_Board.css">
 <link rel="stylesheet" type="type/css" href="exit_button.css">
-
 <body>
-    <button button = "Back">Back</button>
-    <h1 header="Snake">Snake</h1>
+    
+    <h1 header="Snake" id = "Snake">Snake</h1>
     <p intro = "Intro">Eat the food (Using the arrow keys) and don't hit your tail/go out of bounds!</p>
-    <div class="Board" >
-        <div class = "SnakeBody"></div>
-        <div class = "Food"></div>
-    </div>
-    <div class =  "PlayAgainButton"></div>
-    <script type="text/javascript" src="SnakeScript.js"></script>
+    <canvas id = "Board" name="Board"></canvas>
+    
+    <!--<input type = "button" onclick = "main()" value = "Play">  -->
+    
+        
+    
+    
+    <!--<script type="text/javascript" src="SnakeScript.js"></script>-->
+    
+    <script src="SnakeScript.js"></script>
+    <script type="text/javascript">
+        main()
+    
+    
+    </script>
 </body>
+
 </html>
