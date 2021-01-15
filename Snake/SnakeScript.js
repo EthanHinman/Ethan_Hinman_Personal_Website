@@ -191,7 +191,7 @@ function main(){
             else
             {
                 MainBoard.direction = 'S';
-                MainBoard.loop();
+                //MainBoard.loop();
             }
             break;
           case "ArrowUp":
@@ -202,7 +202,7 @@ function main(){
             else
             {
                 MainBoard.direction = 'N';
-                MainBoard.loop();
+                //MainBoard.loop();
             }
             break;
           case "ArrowLeft":
@@ -213,7 +213,7 @@ function main(){
             else
             {
                 MainBoard.direction = 'W';
-                MainBoard.loop(); 
+                //MainBoard.loop(); 
             }
             break;
             
@@ -225,7 +225,7 @@ function main(){
             else
             {
                 MainBoard.direction = 'E';
-                MainBoard.loop();
+                //MainBoard.loop();
                 
             }
         
@@ -237,6 +237,7 @@ function main(){
         }loop();
       // Cancel the default action to avoid it being handled twice
         event.preventDefault();}, true);
+        setInterval(MainBoard.loop,250);
     }
     
 
