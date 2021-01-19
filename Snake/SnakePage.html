@@ -2,30 +2,32 @@
 <html>
 <head>
     <title>Ethan Hinman's Snake Game</title>
-   
+    <link rel="stylesheet" type="text/css" href="Snake.css">
+    <link rel="stylesheet" type="text/css" href="Snake_Board.css">
+    <link rel="stylesheet" type="type/css" href="exit_button.css">
 </head>
-<link rel="stylesheet" type="text/css" href="Snake.css">
-<link rel="stylesheet" type="text/css" href="Snake_Board.css">
-<link rel="stylesheet" type="type/css" href="exit_button.css">
+
 <body>
     
     <h1 header="Snake" id = "Snake">Snake</h1>
+    
     <p intro = "Intro">Eat the food (Using the arrow keys) and don't hit your tail/go out of bounds!</p>
+    
     <canvas id = "Board" name="Board"></canvas>
+    
+    <p id = "Length">Your Length: </p>
     
     <!--<input type = "button" onclick = "main()" value = "Play">  -->
     
-        
-    
-    
-    <!--<script type="text/javascript" src="SnakeScript.js"></script>-->
+    <a id ="Start" name = "Start" >Start Game</a>
+    <a name = "Back" id = "Back" href="../Website_FrameWork.html">Back</a>
     
     <script src="SnakeScript.js"></script>
-    <script type="text/javascript">
-        main()
+    <script >document.getElementById("Start").onclick = function () { main() };</script>
+    <!--<script type="text/javascript" src="SnakeScript.js"></script>-->
     
     
-    </script>
+    
 </body>
 
 </html>

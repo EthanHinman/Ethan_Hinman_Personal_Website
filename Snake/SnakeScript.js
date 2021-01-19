@@ -1,4 +1,5 @@
 
+
 class GameBoard{
     constructor(){
         //
@@ -8,11 +9,12 @@ class GameBoard{
         this.BoardArray = [];
         this.GameRunning = true;
         this.head = [6,6];
-        this.tail = [6,6];
+        this.tail = [6,8];
+        this.gameFrameUpdate;
         if(this.BoardArray[Math.floor((Math.random() * 13) + 1)])
         this.isFood = [];
         this.direction = 'N';
-        
+        this.length = 3;
         // direction to figure out how the snake should move. I use a compass N,E,S,W to figure out the direction.
         // the snake starts out moving north.
         
@@ -25,9 +27,13 @@ class GameBoard{
         // says there is a snake there.
         this.BoardArray[6][6] = true;
         this.BoardArray[6][7] = true;
+        this.BoardArray[6][8] = true;
         // pushes head into beginning of array.
         this.SnakeBody.push([6,6]);
         this.SnakeBody.push([6,7]);
+        this.SnakeBody.push([6,8]);
+     
+    
     }
 
     drawSnake(){
@@ -36,7 +42,7 @@ class GameBoard{
         const height = canvas.height = 455;
         const ctx = canvas.getContext('2d');
         ctx.fillStyle = 'rgb(43, 21, 91)';
-        ctx.fillRect(this.isFood[0]*33,this.isFood[1]*33, 22.5, 22.5);
+        ctx.fillRect(this.isFood[0]*32.5,this.isFood[1]*32.5, 32.5, 32.5);
         
         var i;
         ctx.fillStyle = 'rgb(255, 0, 0)';
@@ -46,78 +52,106 @@ class GameBoard{
         }
         ctx.fillStyle = 'rgb(0, 0, 0)';
         ctx.fillRect(this.SnakeBody[0][0]*32.5,this.SnakeBody[0][1]*32.5, 33, 33);
+        document.getElementById("Length").innerHTML = "Your Length: " + this.length;
     }
 
     // need to fix out of range indexing
     moveSnake(){
-        var old_head = this.head;
+        if(this.GameRunning){
+        //var old_head = this.head;
+        this.BoardArray[this.tail[0]][this.tail[1]] = false;
         if(this.direction == 'N'){
             if(this.head[1]-1 < 0){
                 this.GameRunning = false;
-                alert("You lost and ran out of bounds");
+               
+                return false;
             }
             else if(this.BoardArray[this.head[0]][this.head[1]-1]){
                 this.GameRunning = false;
-                alert("You lost because you hit yourself");}
+            
+                return false;
+            }
             else{
                 this.SnakeBody.unshift([this.head[0],this.head[1]-1])
                 this.head[1] = this.head[1]-1;
-                //alert("hey we made it");
+                this.tail = this.SnakeBody[this.SnakeBody.length-1];
+                this.SnakeBody.pop();
+                
             }
             
         }
         else if(this.direction == 'E'){
             if(this.head[0]+1 > 13){
                 this.GameRunning = false;
-                alert("You lost and ran out of bounds");
+                return false;
             }
             else if(this.BoardArray[this.head[0]+1][this.head[1]]){
                 this.GameRunning = false;
-                alert("You lost because you hit yourself");
+             
+                return false;
             }
             else{
                 this.SnakeBody.unshift([this.head[0]+1,this.head[1]])
                 this.head[0] = this.head[0]+1;
+                this.tail = this.SnakeBody[this.SnakeBody.length-1];
+                this.SnakeBody.pop();
+                
             }
         }
         else if(this.direction == 'S'){
             if(this.head[1]+1 > 13){
                 this.GameRunning = false;
-                alert("You lost and ran out of bounds");
+                
+                return false;
                 
             }
             else if(this.BoardArray[this.head[0]][this.head[1]+1]){
                 this.GameRunning = false;
-                alert("You lost because you hit yourself");
+               
+                return false;
             }
             else{
                 this.SnakeBody.unshift([this.head[0],this.head[1]+1])
                 this.head[1] = this.head[1]+1;
+                this.tail = this.SnakeBody[this.SnakeBody.length-1];
+                this.SnakeBody.pop();
+                
             }
         }
         // direction would be west
         else{
             if(this.head[0]-1 <0){
                 this.GameRunning = false;
-                alert("You lost and ran out of bounds");
+                
+                return false;
 
             }
             else if(this.BoardArray[this.head[0]-1][this.head[1]]){
                 this.GameRunning = false;
-                alert("You lost because you hit yourself");
+                
+                return false;
+               
             }
             else{
                 this.SnakeBody.unshift([this.head[0]-1,this.head[1]])
                 this.head[0] = this.head[0]-1;
+                this.BoardArray[this.head[0]][this.head[1]] = true;
+                
+                this.tail = this.SnakeBody[this.SnakeBody.length-1];
+                this.SnakeBody.pop();
+                
+                
             }
+    
         }
-        
+
         this.BoardArray[this.head[0]][this.head[1]] = true;
-        this.BoardArray[this.tail[0]][this.tail[1]] = false;
-        
-        this.tail = this.SnakeBody[this.SnakeBody.length-1];
-        
-        this.SnakeBody.pop();
+        this.BoardArray[this.tail[0]][this.tail[1]] = true;
+        return true;
+    }
+    else{
+        window.location.reload(true);
+        }
     }
     checkFood(){
         if(this.head[0] == this.isFood[0] && this.head[1] == this.isFood[1]){
@@ -145,22 +179,28 @@ class GameBoard{
         
         this.SnakeBody.push([this.tail[0],this.tail[1]]);
         this.tail[1] =this.tail[1] +1;
+        this.BoardArray[this.tail[0]][this.tail[1]] = true;
+        this.length++;
+        var audio = new Audio('Eat.mp3');
+        audio.play();
     }
-    loop(){
-        MainBoard.moveSnake();
-        MainBoard.checkFood();
-        MainBoard.drawSnake(); 
-    }
-    shiftSnake(old_head){
-        var i;
-        var second_holder_value;
-        for(i = 1; i < this.SnakeBody.length; ++i){
-            second_holder_value =this.SnakeBody[i];
-            this.SnakeBody =old_head;
-            old_head = second_holder_value;
-        }
 
+    loop(){
+        
+        var Game_is_running = MainBoard.moveSnake();
+        if(Game_is_running){
+            MainBoard.checkFood();
+            MainBoard.drawSnake(); 
+        }
+        else{
+         window.location.reload(true);
+        }
+        
+            
+        
+    
     }
+    
 }
 
 
@@ -174,6 +214,12 @@ class GameBoard{
 function main(){
     
     MainBoard = new GameBoard();
+    var myAudio = new Audio('theme.mp3'); 
+    myAudio.volume = 0.4;
+    myAudio.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();}, false);
+    myAudio.play();
     MainBoard.generateFood();
     MainBoard.drawSnake();
     
@@ -225,7 +271,7 @@ function main(){
             else
             {
                 MainBoard.direction = 'E';
-                //MainBoard.loop();
+                
                 
             }
         
@@ -234,14 +280,13 @@ function main(){
             
           default:
             return; // Quit when this doesn't handle the key event.
-        }loop();
+        } 
       // Cancel the default action to avoid it being handled twice
         event.preventDefault();}, true);
         setInterval(MainBoard.loop,250);
+        
     }
-    
-
-
+    document.getElementById("Start").onclick = function () { main() };
 
 
 

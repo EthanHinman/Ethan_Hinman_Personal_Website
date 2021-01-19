@@ -75,8 +75,48 @@ p{
     vertical-align: top;
 }
 body{
-    text-align: center;
     background-color:#242582;
+    text-align: center;
     
+}
+
+#Start{
+    align-content: center;
+    background-color: #f64c72;
+    border-style: solid;
+    color: white;
+    font-family: 'Righteous', serif;
+    font-size: 3em;
+    text-align: center;
+    margin-right: 5px;
+    position: center;
+    vertical-align: sub;
+}
+#Back{
+    border-style: solid;
     
+    text-align: center;
+    align-content: center;
+    color: white;
+    background-color: #f64c72;
+    position: center;
+    font-family: 'Righteous', serif;
+    font-size: 3em;
+    text-decoration:none;
+    margin-left: 5px;
+    vertical-align: sub;
+}
+#Back:hover{
+    background-color: orange;
+    color:white;
+    
+}
+#Start:hover{
+    background-color: green;
+    color:white;
+}
+#length{
+    margin: 5px;
+    margin-bottom: 5px;
+   
 }
